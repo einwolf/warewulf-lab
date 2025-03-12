@@ -13,13 +13,16 @@ virsh undefine ww1-head1 --nvram
 # --extra-args="inst.ks=file:/ww1-head1-ks.cfg console=tty0 console=ttyS0,115200n8" \
 # --extra-args="inst.ks=nfs:192.168.30.1:/data1/provision/kickstarts/ww1-head1-ks.cfg console=tty0 console=ttyS0,115200n8" \
 
+# --extra-args="inst.ks=file:/ww1-head1-ks.cfg console=tty0 console=ttyS0,115200n8" \
 
 virt-install --osinfo almalinux9 --name ww1-head1 \
+--boot=uefi \
 --vcpus 2 --memory 8192 \
 --disk pool=d1disks,size=200 \
 --network=bridge:br0 \
 --network=network=ww1-nodes \
 --location "/data1/libvirt/d1isos/AlmaLinux-9.5-x86_64-dvd.iso" \
---extra-args="inst.ks=file:/ww1-head1-ks.cfg console=tty0 console=ttyS0,115200n8" \
+--initrd-inject "/data1/provision/kickstarts/ww1-head1-ks.cfg" \
+--extra-args="inst.ks=file:/ww1-head1-ks.cfg" \
 --noautoconsole
 

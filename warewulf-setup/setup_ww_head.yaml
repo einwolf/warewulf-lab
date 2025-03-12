@@ -1,0 +1,31 @@
+# Setup warewulf head VM
+---
+- name: Setup warewulf head node
+  hosts: all
+  gather_facts: true
+  become: true
+  vars_files:
+    - vars/vars_vault.yaml
+    - vars/ww_urls.yaml
+  vars:
+    - download_path: "/opt/stigdl/spawarscc/5.10.1"
+  tasks:
+  # - name: Debug print variables
+  #   ansible.builtin.include_role:
+  #     name: setup-ww
+  #     tasks_from: debug_var
+  - name: Make download directory
+    ansible.builtin.file:
+      state: directory
+      path: "{{ download_path }}"
+      owner: root
+      group: root
+      mode: "775"
+  - name: Install warewulf head node
+    ansible.builtin.include_role:
+      name: install_ww
+      tasks_from: setup-warewulf
+  - name: Setup warewulf head node
+    ansible.builtin.include_role:
+      name: setup_ww
+      tasks_from: setup-warewulf
