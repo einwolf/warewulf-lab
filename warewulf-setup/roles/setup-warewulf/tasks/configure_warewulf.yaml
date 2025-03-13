@@ -1,0 +1,29 @@
+---
+- name: Make wwlog directory
+  ansible.builtin.file:
+    state: directory
+    path: /root/wwlog
+    owner: root
+    group: root
+    mode: 0755
+- name: Configure Warewulf
+  ansible.builtin.command:
+    cmd: wwctl configure --all
+  register: wwctl_configure_all
+- name: Save wwctl configure --all stdout
+  ansible.builtin.copy:
+    src: "{{ wwctl_configure_all.stdout }}"
+    dest: /root/wwlog/wwctl_configure_all_stdout.txt
+    owner: root
+    group: root
+    mode: 0644
+- name: Save wwctl configure --all stderr
+  ansible.builtin.copy:
+    src: "{{ wwctl_configure_all.stderr }}"
+    dest: /root/wwlog/wwctl_configure_all_stderr.txt
+    owner: root
+    group: root
+    mode: 0644
+- name: Add nodes
+  ansible.builtin.command:
+    cmd: wwctl node add n00[1-4].ww1 -I 10.0.2.1

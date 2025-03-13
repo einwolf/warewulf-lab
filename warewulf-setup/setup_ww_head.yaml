@@ -14,18 +14,11 @@
   #   ansible.builtin.include_role:
   #     name: setup-ww
   #     tasks_from: debug_var
-  - name: Make download directory
-    ansible.builtin.file:
-      state: directory
-      path: "{{ download_path }}"
-      owner: root
-      group: root
-      mode: "775"
   - name: Install warewulf head node
     ansible.builtin.include_role:
-      name: install_ww
-      tasks_from: setup-warewulf
+      name: setup-warewulf
+      tasks_from: install_warewulf
   - name: Setup warewulf head node
     ansible.builtin.include_role:
-      name: setup_ww
-      tasks_from: setup-warewulf
+      name: setup-warewulf
+      tasks_from: configure_warewulf

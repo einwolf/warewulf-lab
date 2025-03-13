@@ -1,9 +1,0 @@
-# THe warewulf rpm pulls in nfs-utils, dhcp, and tftp-server
----
-- name: Install warewulf rpms
-  ansible.builtin.dnf:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - "{{ ww_rpm_url }}"
-    - "{{ ww_dracut_rpm_url }}"
