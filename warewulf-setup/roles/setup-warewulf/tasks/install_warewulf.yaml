@@ -18,7 +18,7 @@
     disable_gpg_check: true
   with_items:
     - "{{ ww_rpm_url }}"
-    - "{{ ww_dracut_rpm_url }}"
+    # - "{{ ww_dracut_rpm_url }}"
 - name: Configure enp2s0
   ansible.builtin.shell:
     cmd: "{{ item }}"

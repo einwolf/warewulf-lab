@@ -26,4 +26,9 @@
     mode: 0644
 - name: Add nodes
   ansible.builtin.command:
-    cmd: wwctl node add n00[1-4].ww1 -I 10.0.2.1
+    cmd: wwctl node add n00[0-4].ww1 --ipaddr 10.0.2.0 --discoverable=true
+- name: Enable warewulfd
+  ansible.builtin.service:
+    name: warewulfd
+    state: started
+    enabled: true
