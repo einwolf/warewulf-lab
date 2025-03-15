@@ -29,7 +29,7 @@ wwctl profile set --yes --image rocky-95 default
 wwctl image build rocky-95
 
 # wwctl profile set --yes --netdev enp1s0 --netmask 255.255.0.0 --gateway 10.0.0.1 default
-wwctl profile set -y default --netmask=255.255.252.0 --gateway=10.0.0.1
+wwctl profile set -y default --netmask=255.255.0.0 --gateway=10.0.0.1
 
 wwctl node add n00[0-4].ww1 --ipaddr 10.0.2.0 --discoverable=true
 
@@ -46,6 +46,10 @@ wwctl overlay build
 ```
 
 ```bash
+# ssh to nodes directly with key
+ssh -i /etc/warewulf/keys/ssh_host_ed25519_key node001.ww1
+
+# Distributed ssh command
 wwctl ssh n00[0-4].ww1 date
 ```
 

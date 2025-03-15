@@ -16,7 +16,7 @@ virsh undefine ww1-head1 --nvram
 # --extra-args="inst.ks=file:/ww1-head1-ks.cfg console=tty0 console=ttyS0,115200n8" \
 
 virt-install --osinfo almalinux9 --name ww1-head1 \
---boot=uefi \
+--boot=uefi,firmware.feature0.name=secure-boot,firmware.feature0.enabled=no \
 --vcpus 2 --memory 8192 \
 --disk pool=d1disks,size=200 \
 --network=bridge:br0 \
