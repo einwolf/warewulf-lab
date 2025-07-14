@@ -12,8 +12,12 @@ Default boot config at http://10.0.0.1:9873/ipxe/default.ipxe
 ## warewulf node containers
 
 https://github.com/warewulf/warewulf-node-images
+
 https://github.com/orgs/warewulf/packages?repo_name=warewulf-node-images
 
+Warewulf got a almalinux 9 image in Mar 2025
+
+ghcr.io/warewulf/warewulf-almalinux:9.6
 ghcr.io/warewulf/warewulf-rockylinux:9.5
 ghcr.io/warewulf/warewulf-centos:7
 ghcr.io/warewulf/warewulf-debian:12.0
@@ -23,10 +27,10 @@ ghcr.io/warewulf/warewulf-tumbleweed:latest # OpenSUSE Tumbleweed
 ## Command notes
 
 ```bash
-wwctl image import docker://ghcr.io/warewulf/warewulf-rockylinux:9 rocky-9
-wwctl image import docker://ghcr.io/warewulf/warewulf-rockylinux:9.5 rocky-95
-wwctl profile set --yes --image rocky-95 default
-wwctl image build rocky-95
+wwctl image import docker://ghcr.io/warewulf/warewulf-almalinux:9 rocky-9
+wwctl image import docker://ghcr.io/warewulf/warewulf-almalinux:9.6 alma-96
+wwctl profile set --yes --image alma-96 default
+wwctl image build alma-96
 
 # wwctl profile set --yes --netdev enp1s0 --netmask 255.255.0.0 --gateway 10.0.0.1 default
 wwctl profile set -y default --netmask=255.255.0.0 --gateway=10.0.0.1
